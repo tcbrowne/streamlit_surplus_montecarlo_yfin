@@ -13,9 +13,12 @@ from matplotlib import pyplot as plt
 init_printing()
 
 # include values in millions
+st.title("Select the company to value")
+option = st.radio(
+    'Ticker Selection',
+    ('GOOG', 'AAPL', 'FB'))
 
-
-tkr = yf.Ticker("GOOG")
+tkr = yf.Ticker(option)
 
 #Financial Statement Variables
 by = 2019
@@ -124,8 +127,8 @@ z1 = st.slider('Lower bound of expected earnings surprise.',1,100,3)
 z2 = st.slider('Upper bound of expected earnings surprise.',1,100,20)
 
 st.subheader("Variable #2: Expected RoE over the period.")
-n1 = st.slider('Lower bound of expected RoE.',0.01,0.50,0.08)
-n2 = st.slider('Upper bound of expected RoE.',0.01,0.50,0.23)
+n1 = st.slider('Lower bound of expected RoE.',0.01,1.00,0.08)
+n2 = st.slider('Upper bound of expected RoE.',0.01,1.00,0.23)
 
 Monte_Distribution = crude_monte_carlo(sim1)
 
@@ -155,7 +158,7 @@ st.pyplot()
 st.subheader("Summary Statistics of Simulations")
 st.table(monte_df[["Valuation", "Years of RoE > Kc", "RoE"]].describe())
 
-#To see full data frame of simulations
+#THis shows whole dataframe which is too much
 # st.subheader("Simulations of Share Price")
 # st.table(monte_df)
 
