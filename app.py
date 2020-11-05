@@ -155,8 +155,9 @@ st.pyplot()
 st.subheader("Summary Statistics of Simulations")
 st.table(monte_df[["Valuation", "Years of RoE > Kc", "RoE"]].describe())
 
-st.subheader("Simulations of Share Price")
-st.table(monte_df)
+#To see full data frame of simulations
+# st.subheader("Simulations of Share Price")
+# st.table(monte_df)
 
 hide_menu_style = """
         <style>
