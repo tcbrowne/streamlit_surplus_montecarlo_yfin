@@ -23,17 +23,23 @@ py = by - 1
 
 netincome = tkr.financials.loc['Net Income',:].tolist()
 byNI = netincome[0]
+print(byNI)
 
 numshares = tkr.info['sharesOutstanding']
+print(numshares)
 
 bookvalue1 = tkr.balancesheet.loc['Total Stockholder Equity',:].tolist()
 byBV = bookvalue1[0]
 pyBV = bookvalue1[1]
+print(byBV)
+print(pyBV)
 
 divy = tkr.dividends.tolist()
 byDivtemp = divy.reverse()
 byDivtemp = divy[0:4]
 byDiv = (sum(byDivtemp) * numshares)
+
+print(byDiv)
 
 #CAPM Variables
 vRf = 0.0085
@@ -41,8 +47,10 @@ vMRP = 0.058
 Bta = tkr.info['beta']
 vMR = vRf + vMRP
 Kc = (vRf * (1 - Bta)) + (Bta*vMR)
+print(Kc)
 
 pytrt = byDiv / byNI #payout ratio defined as Dividend (base year) / NI (base year), assume will contineu for seven years
+print(pytrt)
 
 def fun(currentyear, finalyear, BVpy, pytrt, vROE):
   Book_Values = []
@@ -78,7 +86,8 @@ def SurplusModel(vROE_input,vROE):
 
     vPA = byBV + sum(some(vOX_Values, Kc))
 
-    Share_Value = vPA / (numshares / 1000000)
+    # Share_Value = vPA / (numshares / 1000000)
+    Share_Value = vPA / numshares 
     
     return Share_Value
 
