@@ -5,4 +5,4 @@ sympy==1.6.2
 matplotlib==3.3.2
 pandas==1.1.4
 seaborn==0.11.0
-yfinance==0.1.55
+git+git://github.com/tcbrowne/yfinance.git@tcbrowne-patch-1
