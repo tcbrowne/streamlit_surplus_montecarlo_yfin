@@ -7,4 +7,5 @@ pandas==1.1.4
 seaborn==0.11.0
 lxml==4.6.1
 Pillow==3.3.1
+4.12.0
 git+git://github.com/tcbrowne/yfinance.git@tcbrowne-patch-1
