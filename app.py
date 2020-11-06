@@ -119,7 +119,7 @@ def crude_monte_carlo(num_samples):
     return (Value_var,roe_len_Var,roe_var) #float(sum_of_samples/num_samples)
 
 #Streamlit Section for WebApp
-st.title("Monte Carlo: Share Price of Google")
+st.title("Monte Carlo: Share Price of {}").format(option)
 
 sim1 = st.slider('How many simulations would you like to run?',100,100000,1000)
 
@@ -142,17 +142,17 @@ monte_df = pd.DataFrame({'Valuation':value_list, 'Years of RoE > Kc':roe_len_lis
 avrg_value = monte_df['Valuation'].sum() / len(monte_df.index)
 
 st.subheader("Simulated Mean Share Price")
-st.write('Average value of Google Share Price simulated {} times'.format(len(monte_df.index)))
+st.write('Average value of Share Price simulated {} times'.format(len(monte_df.index)))
 st.write(avrg_value)
 
 # Graphs & Density Distribution
 st.subheader("Distribution of All Simulations")
 monte_df[['Valuation']].plot(kind='density') # or pd.Series()
-plt.title('Google Share Price Distribution')
+plt.title('{} Share Price Distribution').format(option)
 st.pyplot()
 
 ax = sns.histplot(value_list)
-plt.title('Google Share Price Distribution')
+plt.title('{} Share Price Distribution').format(option)
 ax.set(xlabel='Share Valuation', ylabel='Frequency')
 st.pyplot()
 
