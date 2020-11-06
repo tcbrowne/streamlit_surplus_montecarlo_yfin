@@ -119,7 +119,8 @@ def crude_monte_carlo(num_samples):
     return (Value_var,roe_len_Var,roe_var) #float(sum_of_samples/num_samples)
 
 #Streamlit Section for WebApp
-st.title("Monte Carlo: Share Price of {}").format(option)
+
+st.title('Monte Carlo: Share Price of {}'.format(option))
 
 sim1 = st.slider('How many simulations would you like to run?',100,100000,1000)
 
@@ -148,11 +149,11 @@ st.write(avrg_value)
 # Graphs & Density Distribution
 st.subheader("Distribution of All Simulations")
 monte_df[['Valuation']].plot(kind='density') # or pd.Series()
-plt.title('{} Share Price Distribution').format(option)
+plt.title('{} Share Price Distribution'.format(option))
 st.pyplot()
 
 ax = sns.histplot(value_list)
-plt.title('{} Share Price Distribution').format(option)
+plt.title('{} Share Price Distribution'.format(option))
 ax.set(xlabel='Share Valuation', ylabel='Frequency')
 st.pyplot()
 
