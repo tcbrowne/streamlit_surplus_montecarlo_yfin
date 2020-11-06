@@ -138,9 +138,9 @@ st.write('Additionally, model assumes that abnormal earnings persist for the hor
 st.title('Monte Carlo: Share Price of {}'.format(option))
 
 # sim1 = st.slider('How many simulations would you like to run?',100,100000,1000)
-sim1 = st.select_slider(
+sim1 = st.radio(
      'How many simulations would you like to run?',
-     options=[100, 1000, 10000, 100000, 1000000])
+     options(100, 1000, 10000, 100000, 1000000))
 
 st.subheader("Variable #1: Length of expected earnings surprise (RoE > cost of capital).")
 
