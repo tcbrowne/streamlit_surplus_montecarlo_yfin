@@ -6,5 +6,5 @@ matplotlib==3.3.2
 pandas==1.1.4
 seaborn==0.11.0
 lxml==4.6.1
-PIL=8.0.1
+PIL==8.0.1
 git+git://github.com/tcbrowne/yfinance.git@tcbrowne-patch-1
