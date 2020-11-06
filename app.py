@@ -13,7 +13,7 @@ from matplotlib import pyplot as plt
 init_printing()
 
 # include values in millions
-st.title("Select the company to value")
+st.title("Select the company to value :sunglasses:")
 # option = st.radio(
 #     'Ticker Selection',
 #     ('GOOG', 'AAPL', 'FB'))
