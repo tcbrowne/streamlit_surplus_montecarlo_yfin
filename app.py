@@ -129,7 +129,10 @@ def crude_monte_carlo(num_samples):
 
 st.title('Monte Carlo: Share Price of {}'.format(option))
 
-sim1 = st.slider('How many simulations would you like to run?',100,100000,1000)
+# sim1 = st.slider('How many simulations would you like to run?',100,100000,1000)
+sim1 = st.radio(
+     'How many simulations would you like to run?',
+     (100, 1000, 10000, 100000, 1000000))
 
 st.subheader("Variable #1: Length of expected earnings surprise (RoE > cost of capital).")
 z1 = st.slider('Lower bound of expected earnings surprise.',1,100,3)
