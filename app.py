@@ -14,9 +14,10 @@ init_printing()
 
 # include values in millions
 st.title("Select the company to value")
-option = st.radio(
-    'Ticker Selection',
-    ('GOOG', 'AAPL', 'FB'))
+# option = st.radio(
+#     'Ticker Selection',
+#     ('GOOG', 'AAPL', 'FB'))
+option = st.text_input("Input ticker here:", "GOOG")
 
 tkr = yf.Ticker(option)
 
