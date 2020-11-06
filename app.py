@@ -21,7 +21,7 @@ st.title("Select the company you wish to value")
 
 image = Image.open('machine-learning.jpg')
 
-st.image(image, caption='Monte Carlo',
+st.image(image, caption='',
   use_column_width=True)
 
 option = st.text_input("Input ticker here:", "GOOG")
