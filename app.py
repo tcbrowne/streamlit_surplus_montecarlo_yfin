@@ -143,7 +143,7 @@ monte_df = pd.DataFrame({'Valuation':value_list, 'Years of RoE > Kc':roe_len_lis
 avrg_value = monte_df['Valuation'].sum() / len(monte_df.index)
 
 st.subheader("Simulated Mean Share Price")
-st.write('Average value of Share Price simulated {} times'.format(len(monte_df.index)))
+st.write('Average value of {} Share Price simulated {} times'.format(option, len(monte_df.index)))
 st.write(avrg_value)
 
 # Graphs & Density Distribution
