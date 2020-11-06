@@ -10,6 +10,7 @@ import yfinance as yf
 from sympy.stats import Normal, cdf
 from sympy import init_printing
 from matplotlib import pyplot as plt
+from PIL import Image
 init_printing()
 
 # include values in millions
@@ -17,6 +18,12 @@ st.title("Select the company to value")
 # option = st.radio(
 #     'Ticker Selection',
 #     ('GOOG', 'AAPL', 'FB'))
+
+image = Image.open('monte-carlo.jpg')
+
+st.image(image, caption='Monte Carlo',
+  use_column_width=True)
+
 option = st.text_input("Input ticker here:", "GOOG")
 
 tkr = yf.Ticker(option)
