@@ -14,12 +14,12 @@ from PIL import Image
 init_printing()
 
 # include values in millions
-st.title("Select the company to value")
+st.title("Select the company you wish to value")
 # option = st.radio(
 #     'Ticker Selection',
 #     ('GOOG', 'AAPL', 'FB'))
 
-image = Image.open('monte-carlo.jpg')
+image = Image.open('machine-learning.jpg')
 
 st.image(image, caption='Monte Carlo',
   use_column_width=True)
