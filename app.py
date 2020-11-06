@@ -7,6 +7,7 @@ import pandas as pd
 import streamlit as st
 import seaborn as sns
 import yfinance as yf
+import plotly.figure_factory as ff
 from sympy.stats import Normal, cdf
 from sympy import init_printing
 from matplotlib import pyplot as plt
@@ -127,32 +128,41 @@ def crude_monte_carlo(num_samples):
 
 #Streamlit Section for WebApp
 st.sidebar.subheader('How is the valuation calculated?')
-st.write('The **Clean-Surplus-Model (Risidual Income Model)** is used to determining market value, utilizing balance sheet and income statement fundamentals. The two variables hard to define in this model are Return on Equity (RoE) and the horizon in which RoE exceeds Cost of Capital (Kc). Therefore, we leverage a monte carlo simulation over a uniform probability for input variables to determine the possible range of valuations')
+st.sidebar.markdown('The **Clean-Surplus-Model (Risidual Income Model)** is used to determining market value, utilizing balance sheet and income statement fundamentals. The two variables hard to define in this model are Return on Equity (RoE) and the horizon in which RoE exceeds Cost of Capital (Kc). Therefore, we leverage a monte carlo simulation over a uniform probability for input variables to determine the possible range of valuations')
 
 st.sidebar.subheader('Assumptions')
-st.write('Assumes capital market conditions are stable and dividend irrelevancy.')
-st.write('Assumes that the company is not in a growth stage (i.e., negative ROE). Might be more appropriate to use projected or industry average ROE.')
-st.write('Assumes that ROE stays constant for horizon input. In reality, ROE can change in response to a number of factors such as competition. ROE has been determined from the fundamentals of the financial statements in one particular year. Therefore, it is static and may not encapsulate all the information gathered / researched, for instances, by analysts.')
-st.write('Additionally, model assumes that abnormal earnings persist for the horizon given and then drop to zero. Reality could be quite different, for example, persist for only three years or fifteen. There is potential for a "declining abnormal earnings pattern" that is not captured in this model.')
+st.sidebar.markdown('Assumes capital market conditions are stable and dividend irrelevancy.')
+st.sidebar.markdown('Assumes that the company is not in a growth stage (i.e., negative ROE). Might be more appropriate to use projected or industry average ROE.')
+st.sidebar.markdown('Assumes that ROE stays constant for horizon input. In reality, ROE can change in response to a number of factors such as competition. ROE has been determined from the fundamentals of the financial statements in one particular year. Therefore, it is static and may not encapsulate all the information gathered / researched, for instances, by analysts.')
+st.sidebar.markdown('Additionally, model assumes that abnormal earnings persist for the horizon given and then drop to zero. Reality could be quite different, for example, persist for only three years or fifteen. There is potential for a "declining abnormal earnings pattern" that is not captured in this model.')
 
 st.title('Monte Carlo: Share Price of {}'.format(option))
 
 # sim1 = st.slider('How many simulations would you like to run?',100,100000,1000)
-sim1 = st.radio(
+sim1 = st.select_slider(
      'How many simulations would you like to run?',
-     (100, 1000, 10000, 100000, 1000000))
+     options=[100, 1000, 10000, 100000, 1000000])
 
 st.subheader("Variable #1: Length of expected earnings surprise (RoE > cost of capital).")
 
 col1, col2 = st.beta_columns(2)
+
 with col1:
-  st.slider('Lower bound of expected earnings surprise.',1,100,3)
+    z1 = st.slider('Lower bound of expected earnings surprise.',1,100,3)
+
 with col2:
-  z2 = st.slider('Upper bound of expected earnings surprise.',1,100,20)
+    z2 = st.slider('Upper bound of expected earnings surprise.',1,100,20)
+
 
 st.subheader("Variable #2: Expected RoE over the period.")
-n1 = st.slider('Lower bound of expected RoE.',0.01,1.00,0.08)
-n2 = st.slider('Upper bound of expected RoE.',0.01,1.00,0.23)
+
+col3, col4 = st.beta_columns(2)
+
+with col3:
+    n1 = st.slider('Lower bound of expected RoE.',0.01,1.00,0.08)
+
+with col4:
+    n2 = st.slider('Upper bound of expected RoE.',0.01,1.00,0.23)
 
 Monte_Distribution = crude_monte_carlo(sim1)
 
@@ -169,11 +179,12 @@ st.write('Average value of {} Share Price simulated {} times'.format(option, len
 st.write(avrg_value)
 
 # Graphs & Density Distribution
-st.subheader("Distribution of All Simulations")
-monte_df[['Valuation']].plot(kind='density') # or pd.Series()
-plt.title('{} Share Price Distribution'.format(option))
-st.pyplot()
+# st.subheader("Distribution of All Simulations")
+# monte_df[['Valuation']].plot(kind='density') # or pd.Series()
+# plt.title('{} Share Price Distribution'.format(option))
+# st.pyplot()
 
+st.set_option('deprecation.showPyplotGlobalUse', False)
 ax = sns.histplot(value_list)
 plt.title('{} Share Price Distribution'.format(option))
 ax.set(xlabel='Share Valuation', ylabel='Frequency')
