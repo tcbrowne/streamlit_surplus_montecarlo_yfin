@@ -119,7 +119,7 @@ def crude_monte_carlo(num_samples):
 
     return (Value_var,roe_len_Var,roe_var) #float(sum_of_samples/num_samples)
 
-st.title('Financial Statement Variables for {}'.format(option))
+st.title('Financial Statement Inputs for {}'.format(option))
 st.write('Net Income: {}'.format(byNI))
 st.write('Number of Shares: {}'.format(numshares))
 st.write('Current Year Book Value: {}'.format(byBV))
@@ -137,7 +137,7 @@ st.sidebar.markdown('Assumes that the company is not in a growth stage (i.e., ne
 st.sidebar.markdown('Assumes that ROE stays constant for horizon input. In reality, ROE can change in response to a number of factors such as competition. ROE has been determined from the fundamentals of the financial statements in one particular year. Therefore, it is static and may not encapsulate all the information gathered / researched, for instances, by analysts.')
 st.sidebar.markdown('Additionally, model assumes that abnormal earnings persist for the horizon given and then drop to zero. Reality could be quite different, for example, persist for only three years or fifteen. There is potential for a "declining abnormal earnings pattern" that is not captured in this model.')
 
-st.title('Simulated Share Price of {}'.format(option))
+st.title('Variables required for simulation {}'.format(option))
 
 # sim1 = st.slider('How many simulations would you like to run?',100,100000,1000)
 sim1 = st.radio(
