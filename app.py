@@ -120,13 +120,13 @@ def crude_monte_carlo(num_samples):
     return (Value_var,roe_len_Var,roe_var) #float(sum_of_samples/num_samples)
 
 #Streamlit Section for WebApp
-st.sidebar.subheader('Variables pulled from yahoo finance API')
-st.sidebar.markdown('Net Income: {}').format(byNI)
-st.sidebar.markdown('Number of Shares: {}').format(numshares)
-st.sidebar.markdown('Current Year Book Value: {}').format(byBV)
-st.sidebar.markdown('Prior Year Book Value: {}').format(pyBV)
-st.sidebar.markdown('Dividends Paid: {}').format(byDiv)
-st.sidebar.markdown('Beta: {}').format(Bta)
+st.sidebar.subheader('Variables pulled from yahoo finance')
+st.sidebar.markdown('Net Income: {}'.format(byNI))
+st.sidebar.markdown('Number of Shares: {}'.format(numshares))
+st.sidebar.markdown('Current Year Book Value: {}'.format(byBV))
+st.sidebar.markdown('Prior Year Book Value: {}'.format(pyBV))
+st.sidebar.markdown('Dividends Paid: {}'.format(byDiv))
+st.sidebar.markdown('Beta: {}'.format(Bta))
 
 st.sidebar.subheader('How is the valuation calculated?')
 st.sidebar.markdown('The **Clean-Surplus-Model (Risidual Income Model)** is used to determining market value, utilizing balance sheet and income statement fundamentals. The two variables hard to define in this model are Return on Equity (RoE) and the horizon in which RoE exceeds Cost of Capital (Kc). Therefore, we leverage a monte carlo simulation over a uniform probability for input variables to determine the possible range of valuations')
