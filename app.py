@@ -140,7 +140,7 @@ st.sidebar.markdown('Additionally, model assumes that abnormal earnings persist 
 
 st.sidebar.subheader('About')
 st.sidebar.markdown('This app is maintained by Taylor Browne. You can learn more about me at www.linkedin.com/in/taylorchristianbrowne')
-image = Image.open('me.png')
+image = Image.open('me.jpg')
 st.sidebar.image(image, caption='', use_column_width=True)
 
 st.title('Variables required for simulation {}'.format(option))
