@@ -119,13 +119,13 @@ def crude_monte_carlo(num_samples):
 
     return (Value_var,roe_len_Var,roe_var) #float(sum_of_samples/num_samples)
 
-st.sidebar.subheader('Financial Statement Variables for {}'.format(option))
-st.sidebar.write('Net Income: {}'.format(byNI))
-st.sidebar.write('Number of Shares: {}'.format(numshares))
-st.sidebar.write('Current Year Book Value: {}'.format(byBV))
-st.sidebar.write('Prior Year Book Value: {}'.format(pyBV))
-st.sidebar.write('Dividends Paid: {}'.format(byDiv))
-st.sidebar.write('Beta: {}'.format(Bta))
+st.subheader('Financial Statement Variables for {}'.format(option))
+st.write('Net Income: {}'.format(byNI))
+st.write('Number of Shares: {}'.format(numshares))
+st.write('Current Year Book Value: {}'.format(byBV))
+st.write('Prior Year Book Value: {}'.format(pyBV))
+st.write('Dividends Paid: {}'.format(byDiv))
+st.write('Beta: {}'.format(Bta))
 
 #Streamlit Section for WebApp
 st.sidebar.subheader('How is the valuation calculated?')
