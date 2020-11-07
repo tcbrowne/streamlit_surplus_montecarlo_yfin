@@ -14,6 +14,8 @@ from matplotlib import pyplot as plt
 from PIL import Image
 init_printing()
 
+st.beta_set_page_config(page_title='Financial Model', page_icon = image)
+
 # include values in millions
 st.title("Select the company you wish to value")
 # option = st.radio(
@@ -186,8 +188,6 @@ st.plotly_chart(fig, use_container_width=True)
 
 st.subheader("Summary Statistics of Simulations")
 st.table(monte_df[["Valuation", "Years of RoE > Kc", "RoE"]].describe())
-
-st.beta_set_page_config(page_title='Financial Model', page_icon = image)
 
 hide_menu_style = """
         <style>
