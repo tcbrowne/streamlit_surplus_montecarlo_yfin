@@ -119,7 +119,7 @@ def crude_monte_carlo(num_samples):
 
     return (Value_var,roe_len_Var,roe_var) #float(sum_of_samples/num_samples)
 
-st.subheader('Financial Statement Variables for {}'.format(option))
+st.Title('Financial Statement Variables for {}'.format(option))
 st.write('Net Income: {}'.format(byNI))
 st.write('Number of Shares: {}'.format(numshares))
 st.write('Current Year Book Value: {}'.format(byBV))
@@ -137,7 +137,7 @@ st.sidebar.markdown('Assumes that the company is not in a growth stage (i.e., ne
 st.sidebar.markdown('Assumes that ROE stays constant for horizon input. In reality, ROE can change in response to a number of factors such as competition. ROE has been determined from the fundamentals of the financial statements in one particular year. Therefore, it is static and may not encapsulate all the information gathered / researched, for instances, by analysts.')
 st.sidebar.markdown('Additionally, model assumes that abnormal earnings persist for the horizon given and then drop to zero. Reality could be quite different, for example, persist for only three years or fifteen. There is potential for a "declining abnormal earnings pattern" that is not captured in this model.')
 
-st.title('Monte Carlo: Share Price of {}'.format(option))
+st.title('Simulated Share Price of {}'.format(option))
 
 # sim1 = st.slider('How many simulations would you like to run?',100,100000,1000)
 sim1 = st.radio(
@@ -175,14 +175,14 @@ monte_df = pd.DataFrame({'Valuation':value_list, 'Years of RoE > Kc':roe_len_lis
 
 avrg_value = monte_df['Valuation'].sum() / len(monte_df.index)
 
-st.subheader("Simulated Mean Share Price")
+st.title("Simulated Mean Share Price")
 st.write('Average value of {} Share Price simulated {} times'.format(option, len(monte_df.index)))
 st.write(avrg_value)
 
 valuation_fig_list = [value_list]
 group_labels = ['Valuation']
 fig = ff.create_distplot(valuation_fig_list,group_labels,bin_size=[avrg_value/20],histnorm='probability')
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig) #use_container_width=True
 
 st.subheader("Summary Statistics of Simulations")
 st.table(monte_df[["Valuation", "Years of RoE > Kc", "RoE"]].describe())
