@@ -14,7 +14,7 @@ from matplotlib import pyplot as plt
 from PIL import Image
 init_printing()
 
-image = Image.open('machine-learning.jpg')
+image = Image.open('financial_icon2.jpg')
 st.set_page_config(page_title='Financial Model', page_icon = image)
 
 # include values in millions
