@@ -15,7 +15,7 @@ from PIL import Image
 init_printing()
 
 image = Image.open('machine-learning.jpg')
-st.beta_set_page_config(page_title='Financial Model', page_icon = image)
+st.set_page_config(page_title='Financial Model', page_icon = image)
 
 # include values in millions
 st.title("Select the company you wish to value")
