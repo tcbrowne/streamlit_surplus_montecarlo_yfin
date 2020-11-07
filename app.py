@@ -138,6 +138,11 @@ st.sidebar.markdown('Assumes that the company is not in a growth stage (i.e., ne
 st.sidebar.markdown('Assumes that ROE stays constant for horizon input. In reality, ROE can change in response to a number of factors such as competition. ROE has been determined from the fundamentals of the financial statements in one particular year. Therefore, it is static and may not encapsulate all the information gathered / researched, for instances, by analysts.')
 st.sidebar.markdown('Additionally, model assumes that abnormal earnings persist for the horizon given and then drop to zero. Reality could be quite different, for example, persist for only three years or fifteen. There is potential for a "declining abnormal earnings pattern" that is not captured in this model.')
 
+st.sidebar.subheader('About')
+st.sidebar.markdown('This app is maintained by Taylor Browne. You can learn more about me at www.linkedin.com/in/taylorchristianbrowne')
+image = Image.open('me.png')
+st.sidebar.image(image, caption='', use_column_width=True)
+
 st.title('Variables required for simulation {}'.format(option))
 
 # sim1 = st.slider('How many simulations would you like to run?',100,100000,1000)
