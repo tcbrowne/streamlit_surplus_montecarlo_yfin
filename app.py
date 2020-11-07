@@ -14,7 +14,7 @@ from matplotlib import pyplot as plt
 from PIL import Image
 init_printing()
 
-image = Image.open('financial_icon3.jpg')
+image = Image.open('financial_icon3.png')
 st.set_page_config(page_title='Financial Model', page_icon = image)
 
 # include values in millions
@@ -143,7 +143,7 @@ st.title('Variables required for simulation {}'.format(option))
 # sim1 = st.slider('How many simulations would you like to run?',100,100000,1000)
 sim1 = st.radio(
      'How many simulations would you like to run?',
-     (100, 1000, 10000, 100000, 1000000))
+     (100, 1000, 10000, 100000))
 
 st.subheader("Variable #1: Length of expected earnings surprise (RoE > cost of capital).")
 
