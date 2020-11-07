@@ -14,8 +14,8 @@ from matplotlib import pyplot as plt
 from PIL import Image
 init_printing()
 
-image = Image.open('financial_icon3.png')
-st.set_page_config(page_title='Financial Model', page_icon = ':coffee:')
+# image = Image.open('financial_icon3.png')
+st.set_page_config(page_title='Financial Model', page_icon = ':bank:')
 
 # include values in millions
 st.title("Select the company you wish to value")
