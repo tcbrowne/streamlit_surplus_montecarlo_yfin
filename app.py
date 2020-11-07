@@ -35,23 +35,18 @@ py = by - 1
 
 netincome = tkr.financials.loc['Net Income',:].tolist()
 byNI = netincome[0]
-print(byNI)
 
 numshares = tkr.info['sharesOutstanding']
-print(numshares)
 
 bookvalue1 = tkr.balancesheet.loc['Total Stockholder Equity',:].tolist()
 byBV = bookvalue1[0]
 pyBV = bookvalue1[1]
-print(byBV)
-print(pyBV)
 
 divy = tkr.dividends.tolist()
 byDivtemp = divy.reverse()
 byDivtemp = divy[0:4]
 byDiv = (sum(byDivtemp) * numshares)
 
-print(byDiv)
 
 #CAPM Variables
 vRf = 0.0085
@@ -59,10 +54,8 @@ vMRP = 0.058
 Bta = tkr.info['beta']
 vMR = vRf + vMRP
 Kc = (vRf * (1 - Bta)) + (Bta*vMR)
-print(Kc)
 
 pytrt = byDiv / byNI #payout ratio defined as Dividend (base year) / NI (base year), assume will contineu for seven years
-print(pytrt)
 
 def fun(currentyear, finalyear, BVpy, pytrt, vROE):
   Book_Values = []
@@ -127,6 +120,14 @@ def crude_monte_carlo(num_samples):
     return (Value_var,roe_len_Var,roe_var) #float(sum_of_samples/num_samples)
 
 #Streamlit Section for WebApp
+st.sidebar.subheader('Variables pulled from yahoo finance API')
+st.sidebar.markdown('Net Income: {}').format(byNI)
+st.sidebar.markdown('Number of Shares: {}').format(numshares)
+st.sidebar.markdown('Current Year Book Value: {}').format(byBV)
+st.sidebar.markdown('Prior Year Book Value: {}').format(pyBV)
+st.sidebar.markdown('Dividends Paid: {}').format(byDiv)
+st.sidebar.markdown('Beta: {}').format(Bta)
+
 st.sidebar.subheader('How is the valuation calculated?')
 st.sidebar.markdown('The **Clean-Surplus-Model (Risidual Income Model)** is used to determining market value, utilizing balance sheet and income statement fundamentals. The two variables hard to define in this model are Return on Equity (RoE) and the horizon in which RoE exceeds Cost of Capital (Kc). Therefore, we leverage a monte carlo simulation over a uniform probability for input variables to determine the possible range of valuations')
 
@@ -185,10 +186,6 @@ st.plotly_chart(fig, use_container_width=True)
 
 st.subheader("Summary Statistics of Simulations")
 st.table(monte_df[["Valuation", "Years of RoE > Kc", "RoE"]].describe())
-
-#THis shows whole dataframe which is too much
-# st.subheader("Simulations of Share Price")
-# st.table(monte_df)
 
 hide_menu_style = """
         <style>
