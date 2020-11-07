@@ -119,7 +119,7 @@ def crude_monte_carlo(num_samples):
 
     return (Value_var,roe_len_Var,roe_var) #float(sum_of_samples/num_samples)
 
-st.Title('Financial Statement Variables for {}'.format(option))
+st.title('Financial Statement Variables for {}'.format(option))
 st.write('Net Income: {}'.format(byNI))
 st.write('Number of Shares: {}'.format(numshares))
 st.write('Current Year Book Value: {}'.format(byBV))
