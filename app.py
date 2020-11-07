@@ -182,7 +182,7 @@ st.write(avrg_value)
 valuation_fig_list = [value_list]
 group_labels = ['Valuation']
 fig = ff.create_distplot(valuation_fig_list,group_labels,bin_size=[avrg_value/20],histnorm='probability')
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, use_container_width=True, clear_figure=False)
 
 st.subheader("Summary Statistics of Simulations")
 st.table(monte_df[["Valuation", "Years of RoE > Kc", "RoE"]].describe())
