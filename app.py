@@ -139,7 +139,6 @@ st.sidebar.markdown('This app is maintained by Taylor Browne. You can learn more
 
 st.title('Variables required for simulation {}'.format(option))
 
-# sim1 = st.slider('How many simulations would you like to run?',100,100000,1000)
 sim1 = st.radio(
      'How many simulations would you like to run?',
      (100, 1000, 10000, 100000))
@@ -182,7 +181,18 @@ st.write(avrg_value)
 valuation_fig_list = [value_list]
 group_labels = ['Valuation']
 fig = ff.create_distplot(valuation_fig_list,group_labels,bin_size=[avrg_value/20],histnorm='probability')
-st.plotly_chart(fig, use_container_width=True)
+# st.plotly_chart(fig, use_container_width=True)
+
+ax = sns.histplot(value_list)
+plt.title('Google Share Price Distribution')
+fig2 = ax.set(xlabel='Share Valuation', ylabel='Frequency')
+# st.pyplot(fig2, use_container_width=True)
+
+col5, col6 = st.beta_columns(2)
+col5.header("Distribution #1")
+col5.plotly_chart(fig, use_column_width=True)
+col6.header("Distribution #2")
+col6.pyplot(fig2,use_column_width=True)
 
 st.subheader("Summary Statistics of Simulations")
 st.table(monte_df[["Valuation", "Years of RoE > Kc", "RoE"]].describe())
