@@ -52,6 +52,7 @@ try:
 
     pytrt = byDiv / byNI #payout ratio defined as Dividend (base year) / NI (base year), assume will contineu for seven years
 except:
+    st.write('The ticker {} was not found.'.format(option))
     tkr = yf.Ticker('GOOG')
 
     #Financial Statement Variables
@@ -143,7 +144,7 @@ def crude_monte_carlo(num_samples):
 
     return (Value_var,roe_len_Var,roe_var) #float(sum_of_samples/num_samples)
 
-st.title('Financial Statement inputs for {}'.format(option))
+st.title('Financial Statement inputs for {}'.format(tkr))
 st.write('Net Income: {}'.format(byNI))
 st.write('Number of Shares: {}'.format(numshares))
 st.write('Current Year Book Value: {}'.format(byBV))
@@ -168,7 +169,7 @@ st.sidebar.markdown(link, unsafe_allow_html=True)
 # image = Image.open('me.jpg')
 # st.sidebar.image(image, caption='', use_column_width=True)
 
-st.title('Variables required for {} simulation'.format(option))
+st.title('Variables required for {} simulation'.format(tkr))
 
 sim1 = st.radio(
      'How many simulations would you like to run?',
@@ -209,7 +210,7 @@ monte_df = pd.DataFrame({'Valuation':value_list, 'Years of RoE > Kc':roe_len_lis
 avrg_value = monte_df['Valuation'].sum() / len(monte_df.index)
 
 st.title("Simulated Mean Share Price")
-st.write('Average value of {} Share Price simulated {} times'.format(option, len(monte_df.index)))
+st.write('Average value of {} Share Price simulated {} times'.format(tkr, len(monte_df.index)))
 st.write(avrg_value)
 
 valuation_fig_list = [value_list]
