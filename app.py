@@ -133,7 +133,9 @@ st.sidebar.markdown('Assumes that ROE stays constant for horizon input. In reali
 st.sidebar.markdown('Additionally, model assumes that abnormal earnings persist for the horizon given and then drop to zero. Reality could be quite different, for example, persist for only three years or fifteen. There is potential for a "declining abnormal earnings pattern" that is not captured in this model.')
 
 st.sidebar.subheader('About')
-st.sidebar.markdown('This app is maintained by Taylor Browne. You can learn more about me at www.linkedin.com/in/taylorchristianbrowne')
+st.sidebar.markdown('This app is maintained by Taylor Browne. You can learn more about me at:')
+link = '[LinkedIn](www.linkedin.com/in/taylorchristianbrowne)'
+st.sidebar.markdown(link, unsafe_allow_html=True)
 # image = Image.open('me.jpg')
 # st.sidebar.image(image, caption='', use_column_width=True)
 
@@ -164,7 +166,10 @@ with col3:
 with col4:
     n2 = st.slider('Upper bound of expected RoE.',0.01,1.00,0.23)
 
-Monte_Distribution = crude_monte_carlo(sim1)
+try:
+    Monte_Distribution = crude_monte_carlo(sim1)
+except:
+    st.write('No such ticker found.')
 
 value_list = Monte_Distribution[0]
 roe_len_list = Monte_Distribution[1]
@@ -181,18 +186,18 @@ st.write(avrg_value)
 valuation_fig_list = [value_list]
 group_labels = ['Valuation']
 fig = ff.create_distplot(valuation_fig_list,group_labels,bin_size=[avrg_value/20],histnorm='probability')
-# st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, use_container_width=True)
 
-fig2 = sns.histplot(value_list)
-plt.title('Google Share Price Distribution')
-fig2.set(xlabel='Share Valuation', ylabel='Frequency')
-# st.pyplot(fig2, use_container_width=True)
+# ax = sns.histplot(value_list)
+# plt.title('Google Share Price Distribution')
+# ax.set(xlabel='Share Valuation', ylabel='Frequency')
+# # st.pyplot(ax, use_container_width=True)
 
-col5, col6 = st.beta_columns(2)
-col5.header("Distribution #1")
-col5.plotly_chart(fig, use_column_width=True)
-col6.header("Distribution #2")
-col6.pyplot(fig2,use_column_width=True)
+# col5, col6 = st.beta_columns(2)
+# col5.header("Distribution #1")
+# col5.plotly_chart(fig, use_column_width=True)
+# col6.header("Distribution #2")
+# col6.pyplot(ax,use_column_width=True)
 
 st.subheader("Summary Statistics of Simulations")
 st.table(monte_df[["Valuation", "Years of RoE > Kc", "RoE"]].describe())
