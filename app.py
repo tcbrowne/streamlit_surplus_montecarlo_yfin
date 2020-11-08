@@ -133,7 +133,7 @@ st.sidebar.markdown('Assumes that ROE stays constant for horizon input. In reali
 st.sidebar.markdown('Additionally, model assumes that abnormal earnings persist for the horizon given and then drop to zero. Reality could be quite different, for example, persist for only three years or fifteen. There is potential for a "declining abnormal earnings pattern" that is not captured in this model.')
 
 st.sidebar.subheader('About')
-st.sidebar.markdown('This app is maintained by Taylor Browne. You can learn more about me at:')
+st.sidebar.markdown('This app is created by Taylor Browne.')
 link = '[LinkedIn](www.linkedin.com/in/taylorchristianbrowne)'
 st.sidebar.markdown(link, unsafe_allow_html=True)
 # image = Image.open('me.jpg')
@@ -143,7 +143,7 @@ st.title('Variables required for simulation {}'.format(option))
 
 sim1 = st.radio(
      'How many simulations would you like to run?',
-     (100, 1000, 10000, 100000))
+     (1000, 10000, 100000))
 
 st.subheader("Variable #1: Length of expected earnings surprise (RoE > cost of capital).")
 
