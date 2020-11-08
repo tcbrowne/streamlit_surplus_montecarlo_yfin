@@ -22,35 +22,64 @@ st.title("Select the company you wish to value")
 
 option = st.text_input("Input ticker here:", "GOOG")
 
-tkr = yf.Ticker(option)
+try:
+    tkr = yf.Ticker(option)
 
-#Financial Statement Variables
-by = 2019
-py = by - 1
+    #Financial Statement Variables
+    by = 2019
+    py = by - 1
 
-netincome = tkr.financials.loc['Net Income',:].tolist()
-byNI = netincome[0]
+    netincome = tkr.financials.loc['Net Income',:].tolist()
+    byNI = netincome[0]
 
-numshares = tkr.info['sharesOutstanding']
+    numshares = tkr.info['sharesOutstanding']
 
-bookvalue1 = tkr.balancesheet.loc['Total Stockholder Equity',:].tolist()
-byBV = bookvalue1[0]
-pyBV = bookvalue1[1]
+    bookvalue1 = tkr.balancesheet.loc['Total Stockholder Equity',:].tolist()
+    byBV = bookvalue1[0]
+    pyBV = bookvalue1[1]
 
-divy = tkr.dividends.tolist()
-byDivtemp = divy.reverse()
-byDivtemp = divy[0:4]
-byDiv = (sum(byDivtemp) * numshares)
+    divy = tkr.dividends.tolist()
+    byDivtemp = divy.reverse()
+    byDivtemp = divy[0:4]
+    byDiv = (sum(byDivtemp) * numshares)
 
+    #CAPM Variables
+    vRf = 0.0085
+    vMRP = 0.058
+    Bta = tkr.info['beta']
+    vMR = vRf + vMRP
+    Kc = (vRf * (1 - Bta)) + (Bta*vMR)
 
-#CAPM Variables
-vRf = 0.0085
-vMRP = 0.058
-Bta = tkr.info['beta']
-vMR = vRf + vMRP
-Kc = (vRf * (1 - Bta)) + (Bta*vMR)
+    pytrt = byDiv / byNI #payout ratio defined as Dividend (base year) / NI (base year), assume will contineu for seven years
+except:
+    tkr = yf.Ticker('GOOG')
 
-pytrt = byDiv / byNI #payout ratio defined as Dividend (base year) / NI (base year), assume will contineu for seven years
+    #Financial Statement Variables
+    by = 2019
+    py = by - 1
+
+    netincome = tkr.financials.loc['Net Income',:].tolist()
+    byNI = netincome[0]
+
+    numshares = tkr.info['sharesOutstanding']
+
+    bookvalue1 = tkr.balancesheet.loc['Total Stockholder Equity',:].tolist()
+    byBV = bookvalue1[0]
+    pyBV = bookvalue1[1]
+
+    divy = tkr.dividends.tolist()
+    byDivtemp = divy.reverse()
+    byDivtemp = divy[0:4]
+    byDiv = (sum(byDivtemp) * numshares)
+
+    #CAPM Variables
+    vRf = 0.0085
+    vMRP = 0.058
+    Bta = tkr.info['beta']
+    vMR = vRf + vMRP
+    Kc = (vRf * (1 - Bta)) + (Bta*vMR)
+
+    pytrt = byDiv / byNI #payout ratio defined as Dividend (base year) / NI (base year), assume will contineu for seven years
 
 def fun(currentyear, finalyear, BVpy, pytrt, vROE):
   Book_Values = []
@@ -114,7 +143,7 @@ def crude_monte_carlo(num_samples):
 
     return (Value_var,roe_len_Var,roe_var) #float(sum_of_samples/num_samples)
 
-st.title('Financial Statement Inputs for {}'.format(option))
+st.title('Financial Statement inputs for {}'.format(option))
 st.write('Net Income: {}'.format(byNI))
 st.write('Number of Shares: {}'.format(numshares))
 st.write('Current Year Book Value: {}'.format(byBV))
@@ -133,13 +162,13 @@ st.sidebar.markdown('Assumes that ROE stays constant for horizon input. In reali
 st.sidebar.markdown('Additionally, model assumes that abnormal earnings persist for the horizon given and then drop to zero. Reality could be quite different, for example, persist for only three years or fifteen. There is potential for a "declining abnormal earnings pattern" that is not captured in this model.')
 
 st.sidebar.subheader('About')
-st.sidebar.markdown('This app is created by Taylor Browne.')
+st.sidebar.markdown('This app is maintained by Taylor Browne.')
 link = '[LinkedIn](www.linkedin.com/in/taylorchristianbrowne)'
 st.sidebar.markdown(link, unsafe_allow_html=True)
 # image = Image.open('me.jpg')
 # st.sidebar.image(image, caption='', use_column_width=True)
 
-st.title('Variables required for simulation {}'.format(option))
+st.title('Variables required for {} simulation'.format(option))
 
 sim1 = st.radio(
      'How many simulations would you like to run?',
