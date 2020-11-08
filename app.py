@@ -183,9 +183,9 @@ group_labels = ['Valuation']
 fig = ff.create_distplot(valuation_fig_list,group_labels,bin_size=[avrg_value/20],histnorm='probability')
 # st.plotly_chart(fig, use_container_width=True)
 
-ax = sns.histplot(value_list)
+fig2 = sns.histplot(value_list)
 plt.title('Google Share Price Distribution')
-fig2 = ax.set(xlabel='Share Valuation', ylabel='Frequency')
+fig2.set(xlabel='Share Valuation', ylabel='Frequency')
 # st.pyplot(fig2, use_container_width=True)
 
 col5, col6 = st.beta_columns(2)
