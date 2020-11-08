@@ -52,8 +52,9 @@ try:
 
     pytrt = byDiv / byNI #payout ratio defined as Dividend (base year) / NI (base year), assume will contineu for seven years
 except:
-    st.write('The ticker {} was not found.'.format(option))
-    option = st.text_input("GOOG")
+    st.write('The ticker "{}"" was not found.'.format(option))
+
+    option = "GOOG"
     tkr = yf.Ticker(option)
 
     #Financial Statement Variables
