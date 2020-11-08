@@ -14,7 +14,7 @@ from matplotlib import pyplot as plt
 from PIL import Image
 init_printing()
 
-# image = Image.open('financial_icon3.png')
+#configuration must be at top
 st.set_page_config(page_title='Financial Model', page_icon = ':bank:')
 
 # include values in millions
@@ -22,6 +22,7 @@ st.title("Select the company you wish to value")
 
 option = st.text_input("Input ticker here:", "GOOG")
 
+#define variables here
 try:
     tkr = yf.Ticker(option)
 
@@ -53,37 +54,37 @@ try:
     pytrt = byDiv / byNI #payout ratio defined as Dividend (base year) / NI (base year), assume will contineu for seven years
 except:
     st.warning('The ticker "{}"" was not found.'.format(option))
-    st.stop()
+    # st.stop()
 
-    # option = "GOOG"
-    # tkr = yf.Ticker(option)
+    option = "GOOG"
+    tkr = yf.Ticker(option)
 
-    # #Financial Statement Variables
-    # by = 2019
-    # py = by - 1
+    #Financial Statement Variables
+    by = 2019
+    py = by - 1
 
-    # netincome = tkr.financials.loc['Net Income',:].tolist()
-    # byNI = netincome[0]
+    netincome = tkr.financials.loc['Net Income',:].tolist()
+    byNI = netincome[0]
 
-    # numshares = tkr.info['sharesOutstanding']
+    numshares = tkr.info['sharesOutstanding']
 
-    # bookvalue1 = tkr.balancesheet.loc['Total Stockholder Equity',:].tolist()
-    # byBV = bookvalue1[0]
-    # pyBV = bookvalue1[1]
+    bookvalue1 = tkr.balancesheet.loc['Total Stockholder Equity',:].tolist()
+    byBV = bookvalue1[0]
+    pyBV = bookvalue1[1]
 
-    # divy = tkr.dividends.tolist()
-    # byDivtemp = divy.reverse()
-    # byDivtemp = divy[0:4]
-    # byDiv = (sum(byDivtemp) * numshares)
+    divy = tkr.dividends.tolist()
+    byDivtemp = divy.reverse()
+    byDivtemp = divy[0:4]
+    byDiv = (sum(byDivtemp) * numshares)
 
-    # #CAPM Variables
-    # vRf = 0.0085
-    # vMRP = 0.058
-    # Bta = tkr.info['beta']
-    # vMR = vRf + vMRP
-    # Kc = (vRf * (1 - Bta)) + (Bta*vMR)
+    #CAPM Variables
+    vRf = 0.0085
+    vMRP = 0.058
+    Bta = tkr.info['beta']
+    vMR = vRf + vMRP
+    Kc = (vRf * (1 - Bta)) + (Bta*vMR)
 
-    # pytrt = byDiv / byNI
+    pytrt = byDiv / byNI
 
 def fun(currentyear, finalyear, BVpy, pytrt, vROE):
   Book_Values = []
