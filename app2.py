@@ -34,12 +34,10 @@ def app():
     st.title("{} Recommendations".format(option))
     st.subheader("Select Date Range")
 
-    col4, col5 = st.beta_columns(2)
-
-    with col4:
+    col1, col2 = st.beta_columns(2)
+    with col1:
         date1 = st.date_input("Start Date",datetime.date(2020, 1, 1))
-
-    with col4:
+    with col2:
         date2 = st.date_input("End Date",datetime.date(2020, 11, 1))
 
     stock_recom1 = tkr.recommendations
