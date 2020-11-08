@@ -151,7 +151,7 @@ def crude_monte_carlo(num_samples):
 
 st.title('Financial Statement inputs for {}'.format(option))
 st.write('Net Income: ${:,.2f}'.format(byNI))
-st.write('Number of Shares: ${:,.2f}'.format(numshares))
+st.write('Number of Shares: {:,.2f}'.format(numshares))
 st.write('Current Year Book Value: ${:,.2f}'.format(byBV))
 st.write('Prior Year Book Value: ${:,.2f}'.format(pyBV))
 st.write('Dividends Paid: ${:,.2f}'.format(byDiv))
