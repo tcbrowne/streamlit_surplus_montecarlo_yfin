@@ -57,7 +57,7 @@ def app():
     st.write(tkr.calendar)
 
     st.title("Balance Sheet for {}".format(option))
-    st.write(tkr.balance_sheet)
+    st.write(tkr.balance_sheet.options.display.float_format = '{:.2f}'.format)
 
     st.title("Earnings for {}".format(option))
     st.write(tkr.earnings)
