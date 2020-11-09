@@ -56,11 +56,13 @@ def app():
     st.title("Event Calendar for {}".format(option))
     st.write(tkr.calendar)
 
-    st.title("Balance Sheet for {}".format(option))
-    st.write(tkr.balance_sheet.options.display.float_format = '{:.2f}'.format)
-
     st.title("Earnings for {}".format(option))
     st.write(tkr.earnings)
-
-    st.title("Financials for {}".format(option))
-    st.write(tkr.financials)
+   
+    col3, col4 = st.beta_columns(2)
+    with col3:
+        st.title("Balance Sheet for {}".format(option))
+        st.write(tkr.balance_sheet)
+    with col4:
+        st.title("P&L for {}".format(option))
+        st.write(tkr.financials)
