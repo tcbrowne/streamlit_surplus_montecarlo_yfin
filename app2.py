@@ -49,3 +49,18 @@ def app():
 
     fig = px.pie(stock_recom3, values='Firm', names='To Grade', title='Distribution by Recommendations')
     st.plotly_chart(fig, use_container_width=True)
+
+    st.title("Sustainability Reports for {}".format(option))
+    st.write(tkr.sustainability)
+
+    st.title("Event Calendar for {}".format(option))
+    st.write(tkr.calendar)
+
+    st.title("Balance Sheet for {}".format(option))
+    st.write(tkr.balance_sheet)
+
+    st.title("Earnings for {}".format(option))
+    st.write(tkr.earnings)
+
+    st.title("Financials for {}".format(option))
+    st.write(tkr.financials)
