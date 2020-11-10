@@ -46,12 +46,10 @@ def app():
     
     st.subheader("Stock Recommendations between dates {} and {}".format(date1,date2)) #include slicer / slider in future to pick date range
    
-    col5, col6 = st.beta_columns(2)
-    with col5:
-        st.write(stock_recom2)
-    with col6:
-        fig = px.pie(stock_recom3, values='Firm', names='To Grade', title='Distribution by Recommendations')
-        st.plotly_chart(fig, use_container_width=True)
+    st.write(stock_recom2)
+    
+    fig = px.pie(stock_recom3, values='Firm', names='To Grade', title='Distribution by Recommendations')
+    st.plotly_chart(fig, use_container_width=True)
 
 #     st.title("Sustainability Reports for {}".format(option))
 #     st.write(tkr.sustainability)
