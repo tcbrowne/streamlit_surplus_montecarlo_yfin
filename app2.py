@@ -45,11 +45,13 @@ def app():
     stock_recom3 = stock_recom2.groupby(['To Grade'],as_index=False)[['Firm']].count()
     
     st.subheader("Stock Recommendations between dates {} and {}".format(date1,date2)) #include slicer / slider in future to pick date range
-   
-    st.write(stock_recom2)
     
-    fig = px.pie(stock_recom3, values='Firm', names='To Grade', title='Distribution by Recommendations')
-    st.plotly_chart(fig, use_container_width=True)
+    col5, col6 = st.beta_columns((1,1))
+    with col5:
+        st.dataframe(stock_recom2,height=400)
+    with col6:
+        fig = px.pie(stock_recom3, values='Firm', names='To Grade', title='Distribution by Recommendations')
+        st.plotly_chart(fig, use_container_width=True)
 
 #     st.title("Sustainability Reports for {}".format(option))
 #     st.write(tkr.sustainability)
@@ -60,10 +62,8 @@ def app():
 #     st.title("Earnings for {}".format(option))
 #     st.write(tkr.earnings)
    
-    col3, col4 = st.beta_columns(2)
-    with col3:
-        st.title("Balance Sheet for {}".format(option))
-        st.write(tkr.balance_sheet)
-    with col4:
-        st.title("P&L for {}".format(option))
-        st.write(tkr.financials)
+    st.title("Balance Sheet for {}".format(option))
+    st.write(tkr.balance_sheet)
+    
+    st.title("P&L for {}".format(option))
+    st.write(tkr.financials)
