@@ -63,7 +63,7 @@ def app():
 #     st.write(tkr.earnings)
    
     st.title("Balance Sheet for {}".format(option))
-    st.write(tkr.balance_sheet)
+    st.dataframe(tkr.balance_sheet,width=600)
     
     st.title("P&L for {}".format(option))
-    st.write(tkr.financials)
+    st.dataframe(tkr.financials,width=600)
