@@ -75,20 +75,19 @@ def app():
     bs = tkr.balance_sheet
     pl = tkr.financials
 
-    bs[~bs.index.str.contains("Total")]
-    bs[~bs.index.str.contains("Net Assets")]
-    pl[~pl.index.str.contains("Total")]
+    bs1 = bs[~bs.index.str.contains("Total")]
+    pl1 = pl[~pl.index.str.contains("Total")]
 
-    bs.rename(columns={ bs.columns[0]: "Current Year", bs.columns[1]: "Prior Year"}, inplace = True)
-    pl.rename(columns={ pl.columns[0]: "Current Year", pl.columns[1]: "Prior Year"}, inplace = True)
+    bs1.rename(columns={ bs1.columns[0]: "Current Year", bs1.columns[1]: "Prior Year"}, inplace = True)
+    pl1.rename(columns={ pl1.columns[0]: "Current Year", pl1.columns[1]: "Prior Year"}, inplace = True)
 
     col3, col4 = st.beta_columns((1,1))
     with col3:
         st.title("Balance Sheet for {}".format(option))
-        st.dataframe(bs)
+        st.dataframe(bs1)
     with col4:
         st.title("P&L for {}".format(option))
-        st.dataframe(pl)
+        st.dataframe(pl1)
 
 
     yrselect = st.selectbox(
@@ -96,9 +95,9 @@ def app():
         ('Current Year','Prior Year'))
 
     st.title("Balance Sheet Visualization")
-    fig2 = px.histogram(bs, histfunc="sum", x = bs.index, y = yrselect)
+    fig2 = px.histogram(bs1, histfunc="sum", x = bs.index, y = yrselect)
     st.plotly_chart(fig2, use_container_width=True)
 
     st.title("P&L Visualization")
-    fig3 = px.histogram(pl, histfunc="sum", x = pl.index, y = yrselect)
+    fig3 = px.histogram(pl1, histfunc="sum", x = pl.index, y = yrselect)
     st.plotly_chart(fig3, use_container_width=True)
