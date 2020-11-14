@@ -22,11 +22,14 @@ def app():
     
     st.subheader("Select the company you wish to profile")
 
-    option = st.text_input("Input ticker here:", "GOOG")
-    tkr = yf.Ticker(option)
-
-    # url = tkr.info['logo_url']
-    # st.markdown("![Alt Text]({})".format(url))
+    col7, col8 = st.beta_columns((4,1))
+    with col7:
+        option = st.text_input("Input ticker here:", "GOOG")
+        tkr = yf.Ticker(option)
+    with col8:
+        st.markdown("Company Logo")
+        url = tkr.info['logo_url']
+        st.markdown("![Alt Text]({})".format(url))
 
     st.title("About {}".format(option))
     st.write(tkr.info['longBusinessSummary'])
