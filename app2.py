@@ -87,10 +87,15 @@ def app():
         st.title("P&L for {}".format(option))
         st.dataframe(pl)
 
+
+    yrselect = st.selectbox(
+        'Select Year',
+        ('Current Year','Prior Year'))
+
     st.title("Balance Sheet Visualization")
-    fig2 = px.histogram(bs, histfunc="sum", x = bs.index, y = "Current Year")
+    fig2 = px.histogram(bs, histfunc="sum", x = bs.index, y = yrselect)
     st.plotly_chart(fig2, use_container_width=True)
 
     st.title("P&L Visualization")
-    fig3 = px.histogram(pl, histfunc="sum", x = pl.index, y = "Current Year")
+    fig3 = px.histogram(pl, histfunc="sum", x = pl.index, y = yrselect)
     st.plotly_chart(fig3, use_container_width=True)
