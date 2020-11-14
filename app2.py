@@ -83,5 +83,5 @@ def app():
         st.title("P&L for {}".format(option))
         st.dataframe(pl)
 
-    fig2 = px.histogram(bs, x='Timestamp('2019-12-31 00:00:00')')
+    fig2 = px.histogram(bs, x="Timestamp('2019-12-31 00:00:00')")
     st.plotly_chart(fig2, use_container_width=True)
