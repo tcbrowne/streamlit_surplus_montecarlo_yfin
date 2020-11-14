@@ -74,7 +74,10 @@ def app():
     
     bs = tkr.balance_sheet
     pl = tkr.financials
-    print(bs)
+
+    # bs1 = bs[~bs.index.str.contains("Total")]
+    bs.rename(columns={ bs.columns[0]: "Current Year", bs.columns[1]: "Prior Year"}, inplace = True)
+    pl.rename(columns={ pl.columns[0]: "Current Year", pl.columns[1]: "Prior Year"}, inplace = True)
 
     col3, col4 = st.beta_columns((1,1))
     with col3:
@@ -84,5 +87,10 @@ def app():
         st.title("P&L for {}".format(option))
         st.dataframe(pl)
 
-    fig2 = px.histogram(bs, x='2019-12-31 00:00:00')
+    st.title("Balance Sheet Visualization")
+    fig2 = px.histogram(bs, histfunc="sum", x = bs.index, y = "Current Year")
     st.plotly_chart(fig2, use_container_width=True)
+
+    st.title("P&L Visualization")
+    fig3 = px.histogram(pl, histfunc="sum", x = pl.index, y = "Current Year")
+    st.plotly_chart(fig3, use_container_width=True)
