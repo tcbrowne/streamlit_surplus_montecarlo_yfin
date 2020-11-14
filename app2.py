@@ -95,9 +95,9 @@ def app():
         ('Current Year','Prior Year'))
 
     st.title("Balance Sheet Visualization")
-    fig2 = px.histogram(bs1, histfunc="sum", x = bs.index, y = yrselect)
+    fig2 = px.histogram(bs1, histfunc="sum", x = bs1.index, y = yrselect)
     st.plotly_chart(fig2, use_container_width=True)
 
     st.title("P&L Visualization")
-    fig3 = px.histogram(pl1, histfunc="sum", x = pl.index, y = yrselect)
+    fig3 = px.histogram(pl1, histfunc="sum", x = pl1.index, y = yrselect)
     st.plotly_chart(fig3, use_container_width=True)
