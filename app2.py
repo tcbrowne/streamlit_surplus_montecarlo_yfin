@@ -25,8 +25,8 @@ def app():
     option = st.text_input("Input ticker here:", "GOOG")
     tkr = yf.Ticker(option)
 
-    url = tkr.info['logo_url']
-    st.markdown("![Alt Text]({})".format(url))
+    # url = tkr.info['logo_url']
+    # st.markdown("![Alt Text]({})".format(url))
 
     st.title("About {}".format(option))
     st.write(tkr.info['longBusinessSummary'])
@@ -61,9 +61,11 @@ def app():
 
 #     st.title("Earnings for {}".format(option))
 #     st.write(tkr.earnings)
-   
-    st.title("Balance Sheet for {}".format(option))
-    st.dataframe(tkr.balance_sheet,width=600)
-    
-    st.title("P&L for {}".format(option))
-    st.dataframe(tkr.financials,width=600)
+
+    col3, col4 = st.beta_columns((1,1))
+    with col3:
+        st.title("Balance Sheet for {}".format(option))
+        st.dataframe(tkr.balance_sheet)
+    with col4:
+        st.title("P&L for {}".format(option))
+        st.dataframe(tkr.financials)

@@ -25,6 +25,11 @@ PAGES = {
     "Stock Profiling": app2,
     "Clean Surplus Model": app1
 }
+
+st.sidebar.title('Stock Under Review')
+url = tkr.info['logo_url']
+st.sidebar.markdown("![Alt Text]({})".format(url))
+
 st.sidebar.title('Navigation')
 selection = st.sidebar.radio("Go to", list(PAGES.keys()))
 page = PAGES[selection]
