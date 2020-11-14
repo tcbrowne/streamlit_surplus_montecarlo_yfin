@@ -75,8 +75,10 @@ def app():
     bs = tkr.balance_sheet
     pl = tkr.financials
 
-    bs[~bs.index.str.contains(["Total","Net"])]
-    pl[~pl.index.str.contains(["Total","Net"])]
+    bs[~bs.index.str.contains("Total")]
+    bs[~bs.index.str.contains("Net Assets")]
+    pl[~pl.index.str.contains("Total")]
+
     bs.rename(columns={ bs.columns[0]: "Current Year", bs.columns[1]: "Prior Year"}, inplace = True)
     pl.rename(columns={ pl.columns[0]: "Current Year", pl.columns[1]: "Prior Year"}, inplace = True)
 
