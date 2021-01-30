@@ -19,7 +19,7 @@ from matplotlib import pyplot as plt
 from PIL import Image
 
 #configuration must be at top
-st.set_page_config(page_title='Financial Model', page_icon = ':bank:', layout = 'wide')
+st.set_page_config(page_title='Financial Model', page_icon = ':bank:', layout = 'centered')
 
 PAGES = {
     "Stock Profiling": app2,
