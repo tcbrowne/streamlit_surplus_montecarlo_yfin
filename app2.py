@@ -71,33 +71,34 @@ def app():
 
 #     st.title("Earnings for {}".format(option))
 #     st.write(tkr.earnings)
-    
-    bs = tkr.balance_sheet
-    pl = tkr.financials
 
-    bs1 = bs[~bs.index.str.contains("Total")]
-    pl1 = pl[~pl.index.str.contains("Total")]
+#  BELOW HERE WAS RECENTLY COMMENTED OUT - JAN 30, 2021
+#     bs = tkr.balance_sheet
+#     pl = tkr.financials
 
-    bs1.rename(columns={ bs1.columns[0]: "Current Year", bs1.columns[1]: "Prior Year"}, inplace = True)
-    pl1.rename(columns={ pl1.columns[0]: "Current Year", pl1.columns[1]: "Prior Year"}, inplace = True)
+#     bs1 = bs[~bs.index.str.contains("Total")]
+#     pl1 = pl[~pl.index.str.contains("Total")]
 
-    col3, col4 = st.beta_columns((1,1))
-    with col3:
-        st.title("Balance Sheet for {}".format(option))
-        st.dataframe(bs1)
-    with col4:
-        st.title("P&L for {}".format(option))
-        st.dataframe(pl1)
+#     bs1.rename(columns={ bs1.columns[0]: "Current Year", bs1.columns[1]: "Prior Year"}, inplace = True)
+#     pl1.rename(columns={ pl1.columns[0]: "Current Year", pl1.columns[1]: "Prior Year"}, inplace = True)
+
+#     col3, col4 = st.beta_columns((1,1))
+#     with col3:
+#         st.title("Balance Sheet for {}".format(option))
+#         st.dataframe(bs1)
+#     with col4:
+#         st.title("P&L for {}".format(option))
+#         st.dataframe(pl1)
 
 
-    yrselect = st.selectbox(
-        'Select Year',
-        ('Current Year','Prior Year'))
+#     yrselect = st.selectbox(
+#         'Select Year',
+#         ('Current Year','Prior Year'))
 
-    st.title("Balance Sheet Visualization")
-    fig2 = px.histogram(bs1, histfunc="sum", x = bs1.index, y = yrselect)
-    st.plotly_chart(fig2, use_container_width=True)
+#     st.title("Balance Sheet Visualization")
+#     fig2 = px.histogram(bs1, histfunc="sum", x = bs1.index, y = yrselect)
+#     st.plotly_chart(fig2, use_container_width=True)
 
-    st.title("P&L Visualization")
-    fig3 = px.histogram(pl1, histfunc="sum", x = pl1.index, y = yrselect)
-    st.plotly_chart(fig3, use_container_width=True)
+#     st.title("P&L Visualization")
+#     fig3 = px.histogram(pl1, histfunc="sum", x = pl1.index, y = yrselect)
+#     st.plotly_chart(fig3, use_container_width=True)
