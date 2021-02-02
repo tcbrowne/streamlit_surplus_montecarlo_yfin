@@ -173,6 +173,20 @@ def app():
     sim1 = st.radio(
         'How many simulations would you like to run?',
         (1000, 10000, 100000))
+    
+    stocktype = st.radio(
+    'What type of stock are you valuing? (Alters default values below)',
+    ("Mature", "Declining", "Growth"))
+    
+    if stocktype == "Growth":
+        pre1var = 0.4
+        pre2var = 0.7
+    elif stocktype == "Mature":
+        pre1var = 0.08
+        pre2var = 0.23
+    elif stocktype == "Declining":
+        pre1var = 0.02
+        pre2var = 0.07
 
     st.subheader("Variable #1: Length of expected earnings surprise (RoE > cost of capital).")
 
@@ -190,10 +204,10 @@ def app():
     col3, col4 = st.beta_columns(2)
 
     with col3:
-        n1 = st.slider('Lower bound of expected RoE.',0.01,1.00,0.08)
+        n1 = st.slider('Lower bound of expected RoE.',0.01,1.00,pre1var)
 
     with col4:
-        n2 = st.slider('Upper bound of expected RoE.',0.01,1.00,0.23)
+        n2 = st.slider('Upper bound of expected RoE.',0.01,1.00,pre2var)
 
     try:
         Monte_Distribution = crude_monte_carlo(sim1)
