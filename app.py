@@ -22,7 +22,7 @@ from PIL import Image
 st.set_page_config(page_title='Financial Model', page_icon = ':bank:', layout = 'wide')
 
 PAGES = {
-    "Stock Profiling": app2,
+    #"Stock Profiling": app2,
     "Clean Surplus Model": app1
 }
 
