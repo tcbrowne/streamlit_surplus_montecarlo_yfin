@@ -34,6 +34,7 @@ page.app()
 st.sidebar.subheader('About')
 st.sidebar.markdown('This app is maintained by Taylor Browne.')
 link = '[LinkedIn](http://linkedin.com/in/taylorchristianbrowne)'
+st.sidebar.markdown(link, unsafe_allow_html=True)
 link = '[GitHub](https://github.com/tcbrowne)'
 st.sidebar.markdown(link, unsafe_allow_html=True)
 
