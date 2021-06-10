@@ -18,15 +18,17 @@ from PIL import Image
 
 def app():
     st.title('Clean-Surplus-Model')
-
-    st.subheader('How is the valuation calculated?')
-    st.write('The **Clean-Surplus-Model (Residual Income Model)** is used to determining market value, utilizing balance sheet and income statement fundamentals. The two variables hard to define in this model are Return on Equity (RoE) and the horizon in which RoE exceeds Cost of Capital (Kc). Therefore, we leverage a monte carlo simulation over a uniform probability for input variables to determine the possible range of valuations')
-
-    st.subheader('Assumptions')
-    st.write('1) Assumes capital market conditions are stable and dividend irrelevancy.')
-    st.write('2) Assumes that the company is not in a growth stage (i.e., negative ROE). Might be more appropriate to use projected or industry average ROE.')
-    st.write('3) Assumes that ROE stays constant for horizon input. In reality, ROE can change in response to a number of factors such as competition. ROE has been determined from the fundamentals of the financial statements in one particular year. Therefore, it is static and may not encapsulate all the information gathered / researched, for instances, by analysts.')
-    st.write('4) Additionally, model assumes that abnormal earnings persist for the horizon given and then drop to zero. Reality could be quite different, for example, persist for only three years or fifteen. There is potential for a "declining abnormal earnings pattern" that is not captured in this model.')
+    
+    col7, col8 = st.beta_columns((2,2))
+    with col7:
+        st.subheader('How is the valuation calculated?')
+        st.write('The **Clean-Surplus-Model (Residual Income Model)** is used to determining market value, utilizing balance sheet and income statement fundamentals. The two variables hard to define in this model are Return on Equity (RoE) and the horizon in which RoE exceeds Cost of Capital (Kc). Therefore, we leverage a monte carlo simulation over a uniform probability for input variables to determine the possible range of valuations')
+    with col8:
+        st.subheader('Assumptions')
+        st.write('1) Assumes capital market conditions are stable and dividend irrelevancy.')
+        st.write('2) Assumes that the company is not in a growth stage (i.e., negative ROE). Might be more appropriate to use projected or industry average ROE.')
+        st.write('3) Assumes that ROE stays constant for horizon input. In reality, ROE can change in response to a number of factors such as competition. ROE has been determined from the fundamentals of the financial statements in one particular year. Therefore, it is static and may not encapsulate all the information gathered / researched, for instances, by analysts.')
+        st.write('4) Additionally, model assumes that abnormal earnings persist for the horizon given and then drop to zero. Reality could be quite different, for example, persist for only three years or fifteen. There is potential for a "declining abnormal earnings pattern" that is not captured in this model.')
 
     # include values in millions
     st.title("Select the company you wish to value")
