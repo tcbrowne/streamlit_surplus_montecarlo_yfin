@@ -23,7 +23,7 @@ def app():
     with col7:
         st.subheader('How is the valuation calculated?')
         st.write('The **Clean-Surplus-Model (Residual Income Model)** is used to determining market value, utilizing balance sheet and income statement fundamentals. The two variables hard to define in this model are Return on Equity (RoE) and the horizon in which RoE exceeds Cost of Capital (Kc). Therefore, we leverage a monte carlo simulation over a uniform probability for input variables to determine the possible range of valuations.')
-        st.image('machine-learning.jpg')
+        st.image('Clean Surplus.jpg')
     with col8:
         st.subheader('Assumptions')
         st.write('1) Assumes capital market conditions are stable and dividend irrelevancy.')
