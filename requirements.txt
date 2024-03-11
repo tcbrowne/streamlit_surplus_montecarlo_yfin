@@ -1,5 +1,5 @@
 streamlit==0.77.0
-numpy==1.26.4
+numpy==1.21.5
 scipy==1.5.3
 sympy==1.6.2
 matplotlib==3.3.2
